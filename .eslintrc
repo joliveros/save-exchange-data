@@ -1,0 +1,17 @@
+{
+  "extends": "eslint-config-airbnb",
+  "env": {
+    "browser": true,
+    "mocha": true,
+    "node": true
+  },
+  "rules": {
+    "import/no-extraneous-dependencies": ["error", {"devDependencies": true, "optionalDependencies": false, "peerDependencies": false}],
+    "no-unused-expressions": 1,
+    "no-underscore-dangle": 1
+  },
+  "globals": {
+      "define": true,
+      "chai": true
+    }
+}
