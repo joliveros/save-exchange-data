@@ -33,9 +33,16 @@
     "save-exchange-data": "./bin/save-exchange-data"
   },
   "dependencies": {
-    "bitstamp-bluebird": "^1.9.1",
-    "bitstamp-ws": "^0.1.1",
-    "chai-stream-es6": "0.0.2"
+    "bitmex-streams": "^0.1.2",
+    "event-stream": "^3.3.4",
+    "json-buffer": "^2.0.11",
+    "json-parse-stream": "0.0.2",
+    "jsonparse": "^1.2.0",
+    "jsonstream": "^1.0.3",
+    "node-redshift": "0.0.6",
+    "split2": "^2.1.0",
+    "through2": "^2.0.1",
+    "yargs": "^6.0.0"
   },
   "devDependencies": {
     "babel-cli": "^6.16.0",
@@ -51,7 +58,6 @@
     "eslint-plugin-jsx-a11y": "^2.2.2",
     "eslint-plugin-react": "^6.3.0",
     "mocha": "^3.1.0",
-    "nock": "^8.0.0",
     "webpack": "^1.9.6",
     "webpack-dev-server": "^1.8.2"
   }
