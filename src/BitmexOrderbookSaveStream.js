@@ -1,5 +1,4 @@
 import keys from 'lodash/keys';
-import prettyjson from 'prettyjson';
 import through2 from 'through2';
 import split2 from 'split2';
 
