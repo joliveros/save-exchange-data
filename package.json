@@ -1,6 +1,6 @@
 {
   "name": "save-exchange-data",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Save exchange data streams to influxdb",
   "main": "lib/index.js",
   "scripts": {
@@ -32,7 +32,7 @@
   "bin": {
     "save-exchange-data": "./bin/save-exchange-data"
   },
-  "directories":{
+  "directories": {
     "lib": "lib"
   },
   "dependencies": {
