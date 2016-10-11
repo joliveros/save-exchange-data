@@ -32,9 +32,10 @@
   "bin": {
     "save-exchange-data": "./bin/save-exchange-data"
   },
-  "directories": {
-    "lib": "lib"
-  },
+  "files": [
+    "bin",
+    "lib"
+  ],
   "dependencies": {
     "bitmex-streams": "^0.1.3",
     "influxdb-nodejs": "^2.0.0",
