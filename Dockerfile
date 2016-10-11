@@ -1,6 +1,6 @@
 FROM node:6.7.0
 
-RUN npm install -g pm2
+RUN npm install -g pm2 save-exchange-data
 
 RUN mkdir /opt/exchange_data
 WORKDIR /opt/exchange_data
