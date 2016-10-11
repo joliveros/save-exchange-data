@@ -1,0 +1,39 @@
+version: '2'
+services:
+  save_exchange_data:
+    container_name: save_exchange_data_node
+    extends:
+      file: docker-compose.common.yml
+      service: save_exchange_data
+    build:
+      context: .
+      dockerfile: Dockerfile-prod
+    command: npm run start:prod
+    environment:
+     - NODE_ENV=production
+    depends_on:
+     - db
+    ports:
+     - "8443:8443"
+    volumes:
+     - ./:/opt/exchange_data
+    networks:
+      - default
+  db:
+    container_name: save_exchange_data_db
+    extends:
+      file: docker-compose.common.yml
+      service: db
+    image: influxdb
+    restart: always
+    ports:
+     - "8083:8083"
+     - "8086:8086"
+    volumes:
+     - influxdb:/var/lib/influxdb
+    networks:
+      - default
+volumes:
+  influxdb:
+networks:
+  default:
