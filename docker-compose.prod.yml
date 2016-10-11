@@ -13,8 +13,6 @@ services:
      - NODE_ENV=production
     depends_on:
      - db
-    ports:
-     - "8443:8443"
     volumes:
      - ./:/opt/exchange_data
     networks:
