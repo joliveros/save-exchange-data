@@ -40,4 +40,4 @@ function SaveStream({ domain, filter, tagKey, tag }) {
   .pipe(stream);
 }
 
-export default BitmexOrderbookSaveStream;
+export default SaveStream;
