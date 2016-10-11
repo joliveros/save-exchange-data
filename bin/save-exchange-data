@@ -3,6 +3,6 @@
 
 'use strict';
 
-var SaveExchangeData = require('../lib/index.js');
+var SaveExchangeData = require('../lib/').default;
 
-new save_exchange_data();
+SaveExchangeData();
