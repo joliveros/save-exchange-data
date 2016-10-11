@@ -4,8 +4,18 @@ import SaveStream from './SaveStream';
 
 const orderbookStream = new WsOrderBookStream();
 const tradeStream = new WsTradeStream();
-const bitmexOrderbookSaveStream = new SaveStream({ domain: 'bitmex_orderbookL10', filter: ['table', 'action', 'data'], tagKey: 'action' });
-const bitmexTradeStream = new SaveStream({ domain: 'bitmex_trades', filter: ['table', 'action', 'data'], tagKey: 'action' });
+
+const bitmexOrderbookSaveStream = new SaveStream({
+  domain: 'bitmex_orderbookL10',
+  filter: ['table', 'action', 'data'],
+  tagKey: 'action',
+});
+
+const bitmexTradeStream = new SaveStream({
+  domain: 'bitmex_trades',
+  filter: ['table', 'action', 'data'],
+  tagKey: 'action',
+});
 
 export default function () {
   orderbookStream
