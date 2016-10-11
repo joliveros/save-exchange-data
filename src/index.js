@@ -1,14 +1,16 @@
-import { argv } from 'yargs'
-import { WsOrderBookStream } from 'bitmex-streams';
-import BitmexOrderbookSaveStream from './BitmexOrderbookSaveStream';
-
-const {
-  key: AWS_KEY,
-  secret: AWS_SECRET
-} = argv;
+import { argv } from 'yargs'; // eslint-disable-line
+import { WsOrderBookStream, WsTradeStream } from 'bitmex-streams';
+import SaveStream from './SaveStream';
 
 const orderbookStream = new WsOrderBookStream();
-const bitmexOrderbookSaveStream = new BitmexOrderbookSaveStream();
+const tradeStream = new WsTradeStream();
+const bitmexOrderbookSaveStream = new SaveStream({ domain: 'bitmex_orderbookL10', filter: ['table', 'action', 'data'], tagKey: 'action' });
+const bitmexTradeStream = new SaveStream({ domain: 'bitmex_trades', filter: ['table', 'action', 'data'], tagKey: 'action' });
 
 orderbookStream
-  .pipe(bitmexOrderbookSaveStream);
+  .pipe(bitmexOrderbookSaveStream)
+  .pipe(process.stdout);
+
+tradeStream
+  .pipe(bitmexTradeStream)
+  .pipe(process.stdout);
