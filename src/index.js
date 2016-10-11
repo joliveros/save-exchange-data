@@ -17,7 +17,7 @@ const bitmexTradeStream = new SaveStream({
   tagKey: 'action',
 });
 
-export default function () {
+export default () => {
   orderbookStream
   .pipe(bitmexOrderbookSaveStream)
   .pipe(process.stdout);
@@ -25,4 +25,4 @@ export default function () {
   tradeStream
   .pipe(bitmexTradeStream)
   .pipe(process.stdout);
-}
+};
