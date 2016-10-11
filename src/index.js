@@ -7,10 +7,12 @@ const tradeStream = new WsTradeStream();
 const bitmexOrderbookSaveStream = new SaveStream({ domain: 'bitmex_orderbookL10', filter: ['table', 'action', 'data'], tagKey: 'action' });
 const bitmexTradeStream = new SaveStream({ domain: 'bitmex_trades', filter: ['table', 'action', 'data'], tagKey: 'action' });
 
-orderbookStream
+export default function () {
+  orderbookStream
   .pipe(bitmexOrderbookSaveStream)
   .pipe(process.stdout);
 
-tradeStream
+  tradeStream
   .pipe(bitmexTradeStream)
   .pipe(process.stdout);
+}
