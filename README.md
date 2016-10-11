@@ -4,7 +4,7 @@ save-exchange-data
 [![Build Status](https://travis-ci.org/joliveros/save-exchange-data.svg?branch=master)](https://travis-ci.org/joliveros/save-exchange-data)
 [![npm version](https://badge.fury.io/js/save-exchange-data.svg)](http://badge.fury.io/js/save-exchange-data)
 
-Save bitstamp orderbook and trade data to sql db in realtime
+Save bitmex exchange data to influxdb
 
 
 Install
@@ -18,7 +18,7 @@ Run
 -------
 
 ```shell
-save-exchange-data --dbtype postgres --host 127.0.0.1
+save-exchange-data
 ```
 
 License
