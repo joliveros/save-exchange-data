@@ -21,9 +21,9 @@ async function save({ data, tagKey, tag, filter = [], domain }) {
   return null;
 }
 
-function BitmexOrderbookSaveStream({ domain, filter, tagKey, tag }) {
+function SaveStream({ domain, filter, tagKey, tag }) {
   const stream = through2({ objectMode: true }, function (chunk, enc, done) {
-    const data = JSON.parse(JSON.parse(chunk.toString()));
+    const data = JSON.parse(chunk.toString());
     const ctx = this;
 
     save({ data, tagKey, tag, filter, domain })
