@@ -2,6 +2,10 @@ import { argv } from 'yargs'; // eslint-disable-line
 import { WsOrderBookStream, WsTradeStream } from 'bitmex-streams';
 import SaveStream from './SaveStream';
 
+const {
+  delay = 0,
+} = argv;
+
 const orderbookStream = new WsOrderBookStream();
 const tradeStream = new WsTradeStream();
 
@@ -18,11 +22,13 @@ const bitmexTradeStream = new SaveStream({
 });
 
 export default () => {
-  orderbookStream
-  .pipe(bitmexOrderbookSaveStream)
-  .pipe(process.stdout);
+  setTimeout(() => {
+    orderbookStream
+    .pipe(bitmexOrderbookSaveStream)
+    .pipe(process.stdout);
 
-  tradeStream
-  .pipe(bitmexTradeStream)
-  .pipe(process.stdout);
+    tradeStream
+    .pipe(bitmexTradeStream)
+    .pipe(process.stdout);
+  }, delay);
 };
