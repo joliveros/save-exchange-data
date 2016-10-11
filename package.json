@@ -2,7 +2,7 @@
   "name": "save-exchange-data",
   "version": "0.0.2",
   "description": "Save exchange data streams to influxdb",
-  "main": "dist/save-exchange-data.js",
+  "main": "lib/index.js",
   "scripts": {
     "clean": "rimraf lib dist",
     "build": "babel src --out-dir lib",
