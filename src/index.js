@@ -3,7 +3,7 @@ import { WsOrderBookStream, WsTradeStream } from 'bitmex-streams';
 import SaveStream from './SaveStream';
 
 const {
-  delay = 0,
+  delay = 3000,
 } = argv;
 
 const orderbookStream = new WsOrderBookStream();
