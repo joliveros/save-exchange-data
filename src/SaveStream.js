@@ -8,7 +8,7 @@ const {
   DBHOST = 'localhost',
 } = argv;
 
-console.log(`http://${DBHOST}:8086/bitmex`)
+console.log(`http://${DBHOST}:8086/bitmex`);
 
 const dbClient = new InfluxDb(`http://${DBHOST}:8086/bitmex`);
 
