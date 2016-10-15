@@ -5,7 +5,7 @@ import through2 from 'through2';
 import InfluxDb from 'influxdb-nodejs';
 
 const {
-  DBHOST = 'db',
+  DBHOST = 'localhost',
 } = argv;
 
 console.log(`http://${DBHOST}:8086/bitmex`);
