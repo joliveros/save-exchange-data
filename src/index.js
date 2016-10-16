@@ -11,24 +11,50 @@ const tradeStream = new WsTradeStream();
 
 const bitmexOrderbookSaveStream = new SaveStream({
   domain: 'bitmex_orderbookL10',
-  filter: ['table', 'action', 'data'],
   tagKey: 'action',
+  map: (data) => {
+    let newData;
+    const requiredKeys = ['table', 'action', 'data'];
+    if (requiredKeys.every(k => k in data)) {
+      newData = data.data.map((item) => {
+        const newItem = item;
+        newItem.action = data.action;
+        delete newItem.symbol;
+        return item;
+      });
+    }
+    return newData;
+  },
 });
 
 const bitmexTradeStream = new SaveStream({
   domain: 'bitmex_trades',
-  filter: ['table', 'action', 'data'],
   tagKey: 'action',
+  map: (data) => {
+    let newData;
+    const requiredKeys = ['table', 'action', 'data'];
+    if (requiredKeys.every(k => k in data)) {
+      newData = data.data.map((item) => {
+        const newItem = item;
+        newItem.action = data.action;
+        delete newItem.symbol;
+        return item;
+      });
+    }
+    return newData;
+  },
 });
 
-export default () => {
-  setTimeout(() => {
-    orderbookStream
-    .pipe(bitmexOrderbookSaveStream)
-    .pipe(process.stdout);
+function init() {
+  orderbookStream
+  .pipe(bitmexOrderbookSaveStream)
+  .pipe(process.stdout);
 
-    tradeStream
-    .pipe(bitmexTradeStream)
-    .pipe(process.stdout);
-  }, delay);
+  tradeStream
+  .pipe(bitmexTradeStream)
+  .pipe(process.stdout);
+}
+
+export default () => {
+  setTimeout(init, delay);
 };
