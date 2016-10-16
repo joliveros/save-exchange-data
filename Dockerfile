@@ -1,6 +1,6 @@
 FROM node:6.7.0
 
-RUN npm i --quiet -g pm2 save-exchange-data
+RUN npm i --quiet -g save-exchange-data
 
 RUN mkdir /opt/exchange_data
 WORKDIR /opt/exchange_data
