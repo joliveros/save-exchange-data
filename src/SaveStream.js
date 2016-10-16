@@ -23,10 +23,13 @@ async function save({ data, tagKey, tag, domain, map }) {
   const newData = map(data);
   const timestamp = (new Date()).getTime();
 
+
   if (newData) {
     awaitEach(newData, async function (dataItem) { // eslint-disable-line
       const Tag = dataItem[tagKey] || tag;
-      await dbClient.writePoint(domain, { timestamp, ...dataItem }, Tag);
+      const newDataItem = { timestamp, ...dataItem };
+      debug(newDataItem);
+      await dbClient.writePoint(domain, newDataItem, Tag);
     });
   }
 

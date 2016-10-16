@@ -2,6 +2,8 @@ import { argv } from 'yargs'; // eslint-disable-line
 import { WsOrderBookStream, WsTradeStream } from 'bitmex-streams';
 import SaveStream from './SaveStream';
 
+const debug = require('debug')('sed'); // eslint-disable-line
+
 const {
   delay = 3000,
 } = argv;
@@ -15,7 +17,7 @@ const bitmexOrderbookSaveStream = new SaveStream({
   map: (data) => {
     let newData;
     const requiredKeys = ['table', 'action', 'data'];
-    if (requiredKeys.every(k => k in data)) {
+    if (requiredKeys.every(k => k in data) && data.action !== 'partial') {
       newData = data.data.map((item) => {
         const newItem = item;
         newItem.action = data.action;
@@ -33,7 +35,7 @@ const bitmexTradeStream = new SaveStream({
   map: (data) => {
     let newData;
     const requiredKeys = ['table', 'action', 'data'];
-    if (requiredKeys.every(k => k in data)) {
+    if (requiredKeys.every(k => k in data) && data.action !== 'partial') {
       newData = data.data.map((item) => {
         const newItem = item;
         newItem.action = data.action;
