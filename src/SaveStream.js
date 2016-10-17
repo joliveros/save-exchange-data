@@ -6,6 +6,8 @@ import awaitEach from 'await-each';
 
 const debug = require('debug')('sed:savestream');
 
+const DBNAME = 'bitmex';
+
 const {
   DBHOST = 'localhost',
 } = argv;
@@ -13,8 +15,6 @@ const {
 debug(`http://${DBHOST}:8086/bitmex`);
 
 const dbClient = new InfluxDb(`http://${DBHOST}:8086/bitmex`);
-
-dbClient.createDatabase();
 
 async function save({ data, tagKey, tag, domain, map }) {
   if (!map) {
@@ -37,6 +37,18 @@ async function save({ data, tagKey, tag, domain, map }) {
 }
 
 function SaveStream({ domain, tagKey, tag, map }) {
+  dbClient.showDatabases()
+  .then((dbs) => {
+    let createdDb;
+
+    if (dbs.indexOf(DBNAME) === -1) {
+      createdDb = dbClient.createDatabase();
+    }
+
+    return createdDb;
+  });
+
+
   const stream = through2({ objectMode: true }, function (chunk, enc, done) {
     const data = JSON.parse(chunk.toString());
     const ctx = this;
