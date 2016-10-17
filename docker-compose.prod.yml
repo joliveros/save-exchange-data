@@ -8,7 +8,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile-prod
-    command: save-exchange-data --delay 3000 --DBHOST db
+    command: pm2 start save-exchange-data --node-args="--delay 3000 --DBHOST db"
     environment:
      - NODE_ENV=production
     depends_on:
